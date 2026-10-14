@@ -28,7 +28,7 @@ def prosecute(trace: list[dict], answer: dict, card: dict) -> dict:
 | `split_sentences(text)` | The exact `answer.span:N` split. |
 | `ProsecutionBudget` | A claim accumulator. `try_add(...)` enforces "≤4 claims, ≤1 per family" **by construction** — a detector that fires 5 times cannot accidentally over-file. Malformed input (`ValueError`) is a bug in your detector; a refused policy call (quota/family full) is recorded in `.dropped`, not an error. |
 | `detect_enforcement_failure` | **The one competently-implemented detector.** Read it before writing your own — it is the template. |
-| 16 named `_hook_*` stubs | One per remaining class, each a `return []` with a docstring naming exactly what CONTRACTS.md §6.4 (or the class's own definition, for the 8 adjudicated classes) says it needs. |
+| 16 named `_hook_*` detectors | One per remaining class, with conservative trace-local evidence and a docstring naming what CONTRACTS.md §6.4 (or the class's own definition for adjudicated classes) requires. |
 | `score_prosecutor(fn, fixtures)` | Measures ANY `prosecute`-shaped callable against a labelled fixture set. Run it against your own work before you ever point it at an opponent. |
 
 ## Why only one detector ships
